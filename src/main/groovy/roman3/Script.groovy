@@ -8,7 +8,7 @@ import groovy.transform.Sortable
 class RomanNumeral {
     private fmt = new RomanNumeralFormat()
     final int d
-    RomanNumeral(String s) { d = fmt.parse(s) }
+    RomanNumeral(String s) { d = fmt.parse(s.toUpperCase()) }
     RomanNumeral(int d) { this.d = d }
     def plus(RomanNumeral other) { new RomanNumeral(d + other.d) }
     def multiply(RomanNumeral other) { new RomanNumeral(d * other.d) }
@@ -22,4 +22,4 @@ def propertyMissing(String p) {
 
 assert XII + IX == XXI
 
-assert [X, IX, IV, V, VI].sort() == [IV, V, VI, IX, X]
+assert [X, IX, IV, V, VI].sort() == [iv, v, vi, ix, x]
