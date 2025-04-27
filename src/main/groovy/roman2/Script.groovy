@@ -16,6 +16,7 @@ class RomanNumeral implements Comparable {
 }
 
 def propertyMissing(String p) {
+    if (p == 'out') return System.out
     new RomanNumeral(p)
 }
 
