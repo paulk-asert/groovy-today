@@ -26,6 +26,7 @@ assert [LVII + LVII, V * III, IV..(V+I)]
 
 assert switch(L) {
     case L -> '50 exactly'
-    case XLV..LV -> 'close to 50'
+    case XLV..<L -> 'just below 50'
+    case ~/LI{1,3}/ -> 'just above 50'
     default -> 'not close to 50'
 } == '50 exactly'
