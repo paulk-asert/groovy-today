@@ -3,7 +3,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class SortNumericStrings {
     private static final Map<String, Integer> WORD_NUMBERS = Map.of(
@@ -25,7 +24,7 @@ public class SortNumericStrings {
             throw new AssertionError("Sort mismatch: " + nums);
         }
 
-        List<Number> result = nums.stream().map(s -> {
+        var result = nums.stream().map(s -> {
             if (isInteger(s)) {
                 return Integer.parseInt(s);
             } else if ("PI".equals(s)) {
@@ -37,7 +36,7 @@ public class SortNumericStrings {
             } else {
                 throw new IllegalArgumentException("Unknown literal: " + s);
             }
-        }).collect(Collectors.toList());
+        }).toList();
 
         List<Number> expected = List.of(0, 2, Math.PI, 4, 33, 222);
         if (!result.equals(expected)) {
