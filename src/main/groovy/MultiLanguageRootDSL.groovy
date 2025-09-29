@@ -5,6 +5,7 @@ def show(t) {
      cube_root_of: { n -> println Math.cbrt(n) }]
 }
 
+//show(the).square(root).of(64)
 show the square root of 64
 show the cube_root_of 64
 
