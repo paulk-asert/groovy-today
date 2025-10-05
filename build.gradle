@@ -1,5 +1,5 @@
 plugins {
-    id 'com.github.ben-manes.versions' version '0.51.0'
+    id 'com.github.ben-manes.versions' version '0.52.0'
     id 'groovy'
 }
 
@@ -7,7 +7,7 @@ repositories {
     mavenCentral()
 }
 
-def groovyVersion = '5.0.0-alpha-12'
+def groovyVersion = '5.0.1'
 dependencies {
     implementation "org.apache.groovy:groovy:$groovyVersion"
     implementation "org.apache.groovy:groovy-test:$groovyVersion"
@@ -16,7 +16,19 @@ dependencies {
     implementation 'com.github.fracpete:romannumerals4j:0.0.1'
     implementation 'org.apache.commons:commons-math3:3.6.1'
     implementation 'org.apache.ivy:ivy:2.5.3'
-    implementation 'org.apache.commons:commons-lang3:3.14.0'
+    implementation 'org.apache.commons:commons-lang3:3.18.0'
+    testImplementation ('org.spockframework:spock-core:2.3-groovy-4.0') {
+        exclude group: 'org.codehaus.groovy'
+    }
+}
+
+tasks.named("compileTestGroovy") {
+    options.forkOptions.jvmArgs += ["-Dspock.iKnowWhatImDoing.disableGroovyVersionCheck=true"]
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+    systemProperty 'spock.iKnowWhatImDoing.disableGroovyVersionCheck', 'true'
 }
 
 /*
